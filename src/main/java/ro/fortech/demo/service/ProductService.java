@@ -5,7 +5,6 @@ import ro.fortech.demo.model.Product;
 import ro.fortech.demo.repository.ProductRepository;
 
 import java.util.List;
-
 import java.util.Optional;
 
 @Service
@@ -28,12 +27,12 @@ public class ProductService {
         productRepository.deleteById(productId);
     }
 
-    public Optional<Product> updateProduct(Product product,Integer productId) {
-        Optional<Product> currentProduct = productRepository.findById(product.getProductId());
-        if (currentProduct.isPresent()){
-            currentProduct.get().setName(product.getName());
-            currentProduct.get().setDescription(product.getDescription());
-            return currentProduct;
+    public Optional<Product> updateProduct(Integer productId, Product product) {
+        Optional<Product> currentProduct = productRepository.findById(productId);
+        if (currentProduct.isPresent()) {
+            product.setProductId(productId);
+            productRepository.save(product);
+            return Optional.of(product);
         }
         return Optional.empty();
     }

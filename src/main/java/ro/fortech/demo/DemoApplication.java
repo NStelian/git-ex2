@@ -10,15 +10,15 @@ import ro.fortech.demo.repository.ProductRepository;
 @SpringBootApplication
 public class DemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
 
-	@Bean
-	CommandLineRunner atStartup(ProductRepository repo) {
-		return args -> {
-			repo.save(new Product("Haur", "14 karate"));
-			repo.save(new Product("Haur2", "24 karate"));
-		};
-	}
+    @Bean
+    CommandLineRunner atStartup(ProductRepository repo) {
+        return args -> {
+            repo.save(new Product("Haur", "14 karate"));
+            repo.save(new Product("Haur2", "24 karate"));
+        };
+    }
 }
