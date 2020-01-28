@@ -12,15 +12,15 @@ public class Product {
     @Id
     @GeneratedValue
     private Integer productId;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String description;
 
     public Product() {
     }
 
-    public Product(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Product(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public Integer getProductId() {
@@ -31,20 +31,20 @@ public class Product {
         this.productId = productId;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -53,21 +53,21 @@ public class Product {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
         return Objects.equals(productId, product.productId) &&
-                Objects.equals(firstName, product.firstName) &&
-                Objects.equals(lastName, product.lastName);
+                Objects.equals(name, product.name) &&
+                Objects.equals(description, product.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, firstName, lastName);
+        return Objects.hash(productId, name, description);
     }
 
     @Override
     public String toString() {
         return "Product{" +
                 "productId=" + productId +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
