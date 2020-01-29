@@ -1,6 +1,7 @@
 package ro.fortech.demo.service;
 
 import org.springframework.stereotype.Service;
+import ro.fortech.demo.exceptions.ProductNotFoundException;
 import ro.fortech.demo.model.Product;
 import ro.fortech.demo.repository.ProductRepository;
 
@@ -24,7 +25,11 @@ public class ProductService {
     }
 
     public void deleteProduct(Integer productId) {
-        productRepository.deleteById(productId);
+        Optional<Product> currentProduct = productRepository.findById(productId);
+        if(currentProduct.isPresent())
+            productRepository.deleteById(productId);
+        else
+            throw new ProductNotFoundException();
     }
 
     public Optional<Product> updateProduct(Integer productId, Product product) {
@@ -34,6 +39,6 @@ public class ProductService {
             productRepository.save(product);
             return Optional.of(product);
         }
-        return Optional.empty();
+        throw new ProductNotFoundException();
     }
 }
